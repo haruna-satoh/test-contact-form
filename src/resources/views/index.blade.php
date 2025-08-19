@@ -42,8 +42,8 @@
             </div>
             <div class="form__group--content">
                 <input type="tel" name="tel" placeholder="080" value="{{ old('tel') }}"> -
-                <input type="tel2" name="tel" placeholder="1234" value="{{ old('tel2') }}"> -
-                <input type="tel3" name="tel" placeholder="5678" value="{{ old('tel3') }}">
+                <input type="tel" name="tel2" placeholder="1234" value="{{ old('tel2') }}"> -
+                <input type="tel" name="tel3" placeholder="5678" value="{{ old('tel3') }}">
             </div>
         </div>
         <div class="form__group">
@@ -70,7 +70,8 @@
             </div>
             <div class="form__group--content">
                 <select name="select">
-                    <option value="選択してください">選択してください</option>
+                    <option value="選択">選択してください</option>
+                    <option value="商品交換">商品交換について</option>
                 </select>
             </div>
         </div>
@@ -80,7 +81,7 @@
                 <span class="required">※</span>
             </div>
             <div class="form__group--content">
-                <textarea name="textarea" cols="30" rows="10" placeholder="お問い合わせ内容をご記入ください"></textarea>
+                <textarea name="contact" cols="30" rows="10" placeholder="お問い合わせ内容をご記入ください">{{ old('contact') }}</textarea>
             </div>
         </div>
         <button type="submit">確認画面</button>
