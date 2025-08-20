@@ -12,18 +12,23 @@ class ContactFactory extends Factory
      *
      * @return array
      */
+    protected $model = Contact::class;
+
     public function definition()
     {
+        $faker = \Faker\Factory::create('ja_JP');
+        $faker->unique(true);
+
         return [
-            'category_id' => $this->faker->numberBetween(1, 5),
-            'first_name' => $this->faker->firstName,
-            'last_name' => $this->faker->lastName,
-            'gender' => $this->faker->numberBetween(1, 3),
-            'email' => $this->faker->safeEmail,
-            'tel' => $this->faker->phoneNumber,
-            'address' => $this->faker->address,
-            'building' => $this->faker->optional()->secondaryAddress,
-            'detail' => $this->faker->realText(50),
+            'category_id' => $faker->numberBetween(1, 5),
+            'first_name' => $faker->firstName,
+            'last_name' => $faker->lastName,
+            'gender' => $faker->randomElement(['男性','女性', 'その他']),
+            'email' => $faker->safeEmail,
+            'tel' => $faker->numerify('080-####-####'),
+            'address' => $faker->address,
+            'building' => $faker->optional()->word,
+            'detail' => $faker->text(50),
         ];
     }
 }

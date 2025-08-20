@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Contact;
 
 class ContactController extends Controller
 {
@@ -12,7 +13,23 @@ class ContactController extends Controller
 
     public function confirm(Request $request) {
         $nameView = $request->surname . ' ' . $request->name;
-        $telView = $request->tel . '-' . $request->tel2 . '-' . $request->tel3;
+        $telView = $request->tel1 . '-' . $request->tel2 . '-' . $request->tel3;
+        $telDb = $request->tel . $request->tel2 . $request->tel3;
+
+        $request->session()->put('contact', [
+            'surname' => $request->surname,
+            'name' => $request->name,
+            'gender' => $request->gender,
+            'email' => $request->email,
+            'tel' => $telDb,
+            'tel1' => $request->tel1,
+            'tel2' => $request->tel2,
+            'tel3' => $request->tel3,
+            'address' => $request->address,
+            'building' => $request->building,
+            'select' => $request->select,
+            'content' =>$request->content,
+        ]);
 
         return view('confirm', [
             'name'=> $nameView,
@@ -22,12 +39,22 @@ class ContactController extends Controller
             'address' => $request->address,
             'building' => $request->building,
             'select' => $request->select,
-            'contact' => $request->contact,
+            'content' => $request->content,
 
         ]);
     }
 
     public function store(Request $request) {
+        $contactData = $request->session()->get('contact');
+
+        Contact::create($contactData);
+
+        $request->session()->forget('contact');
+
+        return redirect()->route('thanks');
+    }
+
+    public function thanks() {
         return view('thanks');
     }
 }
