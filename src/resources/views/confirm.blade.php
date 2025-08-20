@@ -48,7 +48,7 @@
             <tr>
                 <th class="confirm-table__title">お問い合わせ内容</th>
                 <td class="confirm-table__item">
-                    <textarea name="contact" cols="30" rows="10" readonly>{{ $contact }}</textarea>
+                    <textarea name="content" cols="30" rows="10" readonly>{{ $content }}</textarea>
                 </td>
             </tr>
         </table>
