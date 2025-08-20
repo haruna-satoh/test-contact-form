@@ -11,8 +11,8 @@
                 <span class="required">※</span>
             </div>
             <div class="form__group--content">
-                <input type="text" name="surname" placeholder="例: 山田" value="{{ old('surname') }}">
-                <input type="text" name="name" placeholder="例: 太郎" value="{{ old('name') }}">
+                <input type="text" name="surname" placeholder="例: 山田" value="{{ old('surname', session('contact.last_name')) }}">
+                <input type="text" name="name" placeholder="例: 太郎" value="{{ old('name', session('contact.first_name')) }}">
             </div>
         </div>
         <div class="form__group">
@@ -21,9 +21,9 @@
                 <span class="required">※</span>
             </div>
             <div class="form__group--content">
-                <input type="radio" name="gender" value="男性" checked> 男性
-                <input type="radio" name="gender" value="女性"> 女性
-                <input type="radio" name="gender" value="その他"> その他
+                <input type="radio" name="gender" value="男性" {{ old('gender', session('contact.gender')) == '男性' ? 'checked' : '' }} checked> 男性
+                <input type="radio" name="gender" value="女性" {{ old('gender', session('contact.gender')) == '女性' ? 'checked' : '' }}> 女性
+                <input type="radio" name="gender" value="その他" {{ old('gender', session('contact.gender')) == 'その他' ? 'checked' : '' }}> その他
             </div>
         </div>
         <div class="form__group">
@@ -32,7 +32,7 @@
                 <span class="required">※</span>
             </div>
             <div class="form__group--content">
-                <input type="email" name="email" placeholder="例: test@example.com" value="{{ old('email') }}">
+                <input type="email" name="email" placeholder="例: test@example.com" value="{{ old('email', session('contact.email')) }}">
             </div>
         </div>
         <div class="form__group">
@@ -41,9 +41,9 @@
                 <span class="required">※</span>
             </div>
             <div class="form__group--content">
-                <input type="tel" name="tel" placeholder="080" value="{{ old('tel') }}"> -
-                <input type="tel" name="tel2" placeholder="1234" value="{{ old('tel2') }}"> -
-                <input type="tel" name="tel3" placeholder="5678" value="{{ old('tel3') }}">
+                <input type="tel" name="tel1" placeholder="080" value="{{ old('tel1', session('contact.tel1')) }}"> -
+                <input type="tel" name="tel2" placeholder="1234" value="{{ old('tel2', session('contact.tel2')) }}"> -
+                <input type="tel" name="tel3" placeholder="5678" value="{{ old('tel3', session('contact.tel3')) }}">
             </div>
         </div>
         <div class="form__group">
@@ -52,7 +52,7 @@
                 <span class="required">※</span>
             </div>
             <div class="form__group--content">
-                <input type="text" name="address" placeholder="例: 東京都渋谷区千駄ヶ谷1-2-3" value="{{ old('address') }}">
+                <input type="text" name="address" placeholder="例: 東京都渋谷区千駄ヶ谷1-2-3" value="{{ old('address', session('contact.address')) }}">
             </div>
         </div>
         <div class="form__group">
@@ -60,7 +60,7 @@
                 <span class="item">建物名</span>
             </div>
             <div class="form__group--content">
-                <input type="text" name="building" placeholder="例: 千駄ヶ谷マンション101" value="{{ old('building') }}">
+                <input type="text" name="building" placeholder="例: 千駄ヶ谷マンション101" value="{{ old('building', session('contact.building')) }}">
             </div>
         </div>
         <div class="form__group">
@@ -69,13 +69,13 @@
                 <span class="required">※</span>
             </div>
             <div class="form__group--content">
-                <select name="select">
-                    <option value="選択">選択してください</option>
-                    <option value="お届け">商品のお届けについて</option>
-                    <option value="交換">商品の交換について</option>
-                    <option value="トラブル">商品のトラブル</option>
-                    <option value="ショップ">ショップへのお問い合わせ</option>
-                    <option value="その他">その他</option>
+                <select name="category_id">
+                    <option value="">選択してください</option>
+                    <option value="1" {{ old('select', session('contact.category_id')) == '1' ? 'selected' : '' }}>商品のお届けについて</option>
+                    <option value="2" {{ old('select', session('contact.category_id')) == '2' ? 'selected' : '' }}>商品の交換について</option>
+                    <option value="3" {{ old('select', session('contact.category_id')) == '3' ? 'selected' : '' }}>商品のトラブル</option>
+                    <option value="4" {{ old('select', session('contact.category_id')) == '4' ? 'selected' : '' }}>ショップへのお問い合わせ</option>
+                    <option value="5" {{ old('select', session('contact.category_id')) == '5' ? 'selected' : '' }}>その他</option>
                 </select>
             </div>
         </div>
@@ -85,7 +85,7 @@
                 <span class="required">※</span>
             </div>
             <div class="form__group--content">
-                <textarea name="contact" cols="30" rows="10" placeholder="お問い合わせ内容をご記入ください">{{ old('contact') }}</textarea>
+                <textarea name="content" cols="30" rows="10" placeholder="お問い合わせ内容をご記入ください">{{ old('contact', session('contact.detail')) }}</textarea>
             </div>
         </div>
         <button type="submit">確認画面</button>

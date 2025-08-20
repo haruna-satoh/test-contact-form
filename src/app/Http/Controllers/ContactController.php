@@ -7,6 +7,14 @@ use App\Models\Contact;
 
 class ContactController extends Controller
 {
+    private $categories = [
+        1 => '商品のお届けについて',
+        2 => '商品の交換について',
+        3 => '商品のトラブル',
+        4 => 'ショップへのお問い合わせ',
+        5 => 'その他',
+    ];
+
     public function index() {
         return view('index');
     }
@@ -17,8 +25,9 @@ class ContactController extends Controller
         $telDb = $request->tel . $request->tel2 . $request->tel3;
 
         $request->session()->put('contact', [
-            'surname' => $request->surname,
-            'name' => $request->name,
+            'category_id' => $request->category_id,
+            'first_name' => $request->name,
+            'last_name' => $request->surname,
             'gender' => $request->gender,
             'email' => $request->email,
             'tel' => $telDb,
@@ -27,8 +36,7 @@ class ContactController extends Controller
             'tel3' => $request->tel3,
             'address' => $request->address,
             'building' => $request->building,
-            'select' => $request->select,
-            'content' =>$request->content,
+            'detail' =>$request->content,
         ]);
 
         return view('confirm', [
@@ -38,7 +46,7 @@ class ContactController extends Controller
             'tel' => $telView,
             'address' => $request->address,
             'building' => $request->building,
-            'select' => $request->select,
+            'category' => $this->categories[$request->category_id] ?? '',
             'content' => $request->content,
 
         ]);
