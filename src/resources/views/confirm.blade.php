@@ -42,7 +42,7 @@
             <tr>
                 <th class="confirm-table__title">お問い合わせの種類</th>
                 <td class="confirm-table__item">
-                    <input type="text" name="select" value="{{ $select }}" readonly>
+                    <input type="text" name="category_id" value="{{ $category }}" readonly>
                 </td>
             </tr>
             <tr>
