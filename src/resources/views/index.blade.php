@@ -21,7 +21,7 @@
                 <span class="required">※</span>
             </div>
             <div class="form__group--content">
-                <input type="radio" name="gender" value="男性"> 男性
+                <input type="radio" name="gender" value="男性" checked> 男性
                 <input type="radio" name="gender" value="女性"> 女性
                 <input type="radio" name="gender" value="その他"> その他
             </div>
@@ -71,7 +71,11 @@
             <div class="form__group--content">
                 <select name="select">
                     <option value="選択">選択してください</option>
-                    <option value="商品交換">商品交換について</option>
+                    <option value="お届け">商品のお届けについて</option>
+                    <option value="交換">商品の交換について</option>
+                    <option value="トラブル">商品のトラブル</option>
+                    <option value="ショップ">ショップへのお問い合わせ</option>
+                    <option value="その他">その他</option>
                 </select>
             </div>
         </div>
