@@ -13,6 +13,11 @@
                     <input type="text" name="name" placeholder="例: 山田 太郎" value="{{ old('name') }}">
                 </div>
             </div>
+            <div class="form__error">
+                @error('name')
+                    {{ $message }}
+                @enderror
+            </div>
         </div>
         <div class="form__group">
             <div class="form__group-title">
@@ -23,6 +28,11 @@
                     <input type="text" name="email" placeholder="例: test@example.com" value="{{ old('email') }}">
                 </div>
             </div>
+            <div class="form__error">
+                @error('email')
+                    {{ $message }}
+                @enderror
+            </div>
         </div>
         <div class="form__group">
             <div class="form__group-title">
@@ -30,8 +40,28 @@
             </div>
             <div class="form__group-content">
                 <div class="form__group-item">
-                    <input type="text" name="password" placeholder="例: coachtech1106">
+                    <input type="password" name="password" placeholder="例: coachtech1106">
                 </div>
+            </div>
+            <div class="form__error">
+                @error('password')
+                    {{ $message }}
+                @enderror
+            </div>
+        </div>
+        <div class="form__group">
+            <div class="form__group-title">
+                <span>パスワード(確認)</span>
+            </div>
+            <div class="form__group-content">
+                <div class="form__group-item">
+                    <input type="password" name="password_confirmation" placeholder="もう一度同じパスワードを入力してください">
+                </div>
+            </div>
+            <div class="form__error">
+                @error('password')
+                    {{ $message }}
+                @enderror
             </div>
         </div>
         <div class="form__button">
