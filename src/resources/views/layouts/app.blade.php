@@ -11,27 +11,29 @@
 </head>
 
 <body>
-    <header>
-        <h1>FashionablyLate</h1>
-        <nav>
-            @if (isset($page))
-                @switch($page)
-                    @case('register')
-                        <a href="/login">login</a>
-                        @break
-                    @case('login')
-                        <a href="/register">register</a>
-                        @break
-                    @case('admin')
-                        <form action="/logout" method="post" style="display:inline">
-                            @csrf
-                            <button type="submit">logout</button>
-                        </form>
-                        @break
-                    @default
-                @endswitch
-            @endif
-        </nav>
+    <header class="header">
+        <div class="header__inner">
+            <h1 class="header__logo">FashionablyLate</h1>
+            <nav class="header__nav">
+                @if (isset($page))
+                    @switch($page)
+                        @case('register')
+                            <a href="/login" class="header__nav--btn">login</a>
+                            @break
+                        @case('login')
+                            <a href="/register" class="header__nav--btn">register</a>
+                            @break
+                        @case('admin')
+                            <form action="/logout" method="post" style="display:inline">
+                                @csrf
+                                <button type="submit" class="header__nav--btn">logout</button>
+                            </form>
+                            @break
+                        @default
+                    @endswitch
+                @endif
+            </nav>
+        </div>
     </header>
 
 <main>
