@@ -29,9 +29,9 @@
                 <span class="required">※</span>
             </div>
             <div class="form__group--content">
-                <input type="radio" name="gender" value="男性" {{ old('gender', session('contact.gender')) == '男性' ? 'checked' : '' }} checked> 男性
-                <input type="radio" name="gender" value="女性" {{ old('gender', session('contact.gender')) == '女性' ? 'checked' : '' }}> 女性
-                <input type="radio" name="gender" value="その他" {{ old('gender', session('contact.gender')) == 'その他' ? 'checked' : '' }}> その他
+                <input type="radio" name="gender" value="1" {{ old('gender', session('contact.gender', 1)) == '1' ? 'checked' : '' }} checked> 男性
+                <input type="radio" name="gender" value="2" {{ old('gender', session('contact.gender')) == '2' ? 'checked' : '' }}> 女性
+                <input type="radio" name="gender" value="3" {{ old('gender', session('contact.gender')) == '3' ? 'checked' : '' }}> その他
             </div>
             <div class="form__error">
                 @error('gender')
