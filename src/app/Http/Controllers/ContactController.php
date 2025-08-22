@@ -23,7 +23,7 @@ class ContactController extends Controller
     public function confirm(ContactRequest $request) {
         $nameView = $request->surname . ' ' . $request->name;
         $telView = $request->tel1 . '-' . $request->tel2 . '-' . $request->tel3;
-        $telDb = $request->tel . $request->tel2 . $request->tel3;
+        $telDb = $request->tel1 . $request->tel2 . $request->tel3;
 
         $request->session()->put('contact', [
             'category_id' => $request->category_id,
@@ -65,5 +65,11 @@ class ContactController extends Controller
 
     public function thanks() {
         return view('thanks');
+    }
+
+    public function adminList(Request $request) {
+        $contacts = Contact::with('category')->get();
+
+        return view('show', compact('contacts'));
     }
 }

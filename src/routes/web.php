@@ -22,9 +22,9 @@ Route::post('/thanks', [ContactController::class, 'store'])->name('thanks');
 
 Route::get('/thanks', [ContactController::class, 'thanks']);
 
-Route::get('/admin', function (){
-    return view('show');
-})->middleware('auth');
+Route::get('/admin', [ContactController::class, 'adminList'])
+    ->middleware('auth')
+    ->name('admin.index');
 
 Route::get('/login', function () {
     return view('auth.login');

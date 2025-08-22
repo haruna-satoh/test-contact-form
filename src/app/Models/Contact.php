@@ -23,4 +23,8 @@ class Contact extends Model
         'address' => 'required',
         'detail' => 'required'
     );
+
+    public function category() {
+        return $this->belongsTo(Category::class);
+    }
 }
