@@ -35,84 +35,98 @@
             <button type="submit">検索</button>
         </div>
         <div class="form__button--reset">
-            <button>リセット</button>
+            <a href="/admin">
+                <button type="button">リセット</button>
+            </a>
         </div>
+        @if(isset($contacts) && $contacts)
+            <div class="pagination">
+            {{ $contacts->links() }}
+            </div>
+        @endif
     </div>
 </form>
 
-<table>
-    <tr>
-        <th>お名前</th>
-        <th>性別</th>
-        <th>メールアドレス</th>
-        <th>お問い合わせの種類</th>
-        <th></th>
-    </tr>
-
-    @forelse ($contacts as $contact)
+@if (isset($contacts) && $contacts)
+    <table>
         <tr>
-            <td>{{ $contact->last_name }} {{$contact->first_name }}</td>
-            <td>
-                @if ($contact->gender == 1) 男性
-                @elseif ($contact->gender == 2)女性
-                @else その他
-                @endif
-            </td>
-            <td>{{ $contact->email }}</td>
-            <td>
-                {{ $contact->category->content ?? ''  }}
-            </td>
-            <td><button class="open--modal">詳細</button></td>
+            <th>お名前</th>
+            <th>性別</th>
+            <th>メールアドレス</th>
+            <th>お問い合わせの種類</th>
+            <th></th>
         </tr>
-    @empty
-        <tr>
-            <td colspan="5">該当するデータはありません</td>
-        </tr>
-    @endforelse
-</table>
 
-<div id="modal" style="display:none;">
+        @foreach ($contacts as $contact)
+            <tr>
+                <td>{{ $contact->last_name }} {{$contact->first_name }}</td>
+                <td>
+                    @if ($contact->gender == 1) 男性
+                    @elseif ($contact->gender == 2)女性
+                    @else その他
+                    @endif
+                </td>
+                <td>{{ $contact->email }}</td>
+                <td>
+                    {{ $contact->category->content ?? ''  }}
+                </td>
+                <td>
+                    <a href="/admin/{{ $contact->id }}">詳細</a>
+                </td>
+            </tr>
+        @endforeach
+    </table>
+
+@elseif(isset($contact_detail))
     <div class="modal--content">
         <h3>FashionablyLate</h3>
         <table class="modal__table">
             <tr>
                 <th class="modal__table--title">お名前</th>
-                <td class="modal__table--item">{{ $contact->last_name }} {{$contact->first_name }}</td>
+                <td class="modal__table--item">{{ $contact_detail->last_name }} {{$contact_detail->first_name }}</td>
             </tr>
             <tr>
                 <th class="modal__table--title">性別</th>
                 <td class="modal__table--item">
-                    @if ($contact->gender == 1) 男性
-                    @elseif ($contact->gender == 2) 女性
+                    @if ($contact_detail->gender == 1) 男性
+                    @elseif ($contact_detail->gender == 2) 女性
                     @else その他
                     @endif
                 </td>
             </tr>
             <tr>
                 <th class="modal__table--title">メールアドレス</th>
-                <td class="modal__table--item">{{ $contact->email }}</td>
+                <td class="modal__table--item">{{ $contact_detail->email }}</td>
             </tr>
             <tr>
                 <th class="modal__table--title">電話番号</th>
-                <td class="modal__table--item">{{ $contact->tel }}</td>
+                <td class="modal__table--item">{{ $contact_detail->tel }}</td>
             </tr>
             <tr>
                 <th class="modal__table--title">住所</th>
-                <td class="modal__table--item">{{ $contact->address }}</td>
+                <td class="modal__table--item">{{ $contact_detail->address }}</td>
             </tr>
             <tr>
                 <th class="modal__table--title">建物名</th>
-                <td class="modal__table--item">{{ $contact->building }}</td>
+                <td class="modal__table--item">{{ $contact_detail->building }}</td>
             </tr>
             <tr>
                 <th class="modal__table--title">お問い合わせの種類</th>
-                <td class="modal__table--item">{{ $contact->category->content ?? '' }}</td>
+                <td class="modal__table--item">{{ $contact_detail->category->content ?? '' }}</td>
             </tr>
             <tr>
                 <th class="modal__table--title">お問い合わせ内容</th>
-                <td class="modal__table--item">{{ $contact->detail }}</td>
+                <td class="modal__table--item">{{ $contact_detail->detail }}</td>
             </tr>
         </table>
-        <button class="delete">削除</button>
+
+        <form action="/admin/{{ $contact_detail->id }}" method="post">
+            @csrf
+            @method('delete')
+            <button type="submit" class="delete">削除</button>
+        </form>
+
+        <a href="/admin">一覧に戻る</a>
     </div>
+@endif
 </div>

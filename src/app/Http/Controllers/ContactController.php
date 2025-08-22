@@ -88,8 +88,19 @@ class ContactController extends Controller
             $query->whereDate('created_at', $request->date);
         }
 
-        $contacts = $query->get();
+        $contacts = $query->paginate(7);
 
         return view('show', compact('contacts'));
+    }
+
+    public function show($id) {
+        $contact_detail = Contact::with('category')->findOrFail($id);
+        return view('show', compact('contact_detail'));
+    }
+
+    public function destroy($id) {
+        $contact = Contact::findOrFail($id);
+        $contact->delete();
+        return redirect('/admin')->with('success', '削除しました');
     }
 }

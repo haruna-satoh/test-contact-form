@@ -26,6 +26,12 @@ Route::get('/admin', [ContactController::class, 'adminList'])
     ->middleware('auth')
     ->name('admin.index');
 
+Route::get('/admin/{id}', [ContactController::class, 'show'])
+    ->middleware('auth')
+    ->name('admin.show');
+
+Route::delete('/admin/{id}', [ContactController::class, 'destroy']);
+
 Route::get('/login', function () {
     return view('auth.login');
 })->name('login');
