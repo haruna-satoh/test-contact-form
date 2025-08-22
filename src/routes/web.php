@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\LoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,8 +22,12 @@ Route::post('/thanks', [ContactController::class, 'store'])->name('thanks');
 
 Route::get('/thanks', [ContactController::class, 'thanks']);
 
-Route::post('/register', [ContactController::class, 'register']);
+Route::get('/admin', function (){
+    return view('show');
+})->middleware('auth');
 
-Route::post('/login', [ContactController::class, 'login']);
+Route::get('/login', function () {
+    return view('auth.login');
+})->name('login');
 
-Route::post('/logout', [contactController::class, 'logout']);
+Route::post('/login', [LoginController::class, 'store']);
