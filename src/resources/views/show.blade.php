@@ -29,9 +29,7 @@
             </select>
         </div>
         <div class="form__search--day">
-            <select name="day">
-                <option value="">年/月/日</option>
-            </select>
+            <input type="date" name="date" value="{{ request('date') }}">
         </div>
         <div class="form__button--search">
             <button type="submit">検索</button>
@@ -51,7 +49,7 @@
         <th></th>
     </tr>
 
-    @foreach ($contacts as $contact)
+    @forelse ($contacts as $contact)
         <tr>
             <td>{{ $contact->last_name }} {{$contact->first_name }}</td>
             <td>
@@ -66,7 +64,11 @@
             </td>
             <td><button class="open--modal">詳細</button></td>
         </tr>
-    @endforeach
+    @empty
+        <tr>
+            <td colspan="5">該当するデータはありません</td>
+        </tr>
+    @endforelse
 </table>
 
 <div id="modal" style="display:none;">

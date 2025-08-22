@@ -68,7 +68,27 @@ class ContactController extends Controller
     }
 
     public function adminList(Request $request) {
-        $contacts = Contact::with('category')->get();
+        $query = Contact::with('category');
+
+        if($request->keyword) {
+            $query->where(function($q) use ($request) {
+                $q->where('last_name', 'like', "%{$request->keyword}%")->orWhere('first_name', 'like', "%{$request->keyword}%")->orWhere('email', 'like', "%{$request->keyword}%");
+            });
+        }
+
+        if ($request->gender && $request->gender != '0') {
+            $query->where('gender', $request->gender);
+        }
+
+        if ($request->category_id) {
+            $query->where('category_id', $request->category_id);
+        }
+
+        if ($request->date) {
+            $query->whereDate('created_at', $request->date);
+        }
+
+        $contacts = $query->get();
 
         return view('show', compact('contacts'));
     }
