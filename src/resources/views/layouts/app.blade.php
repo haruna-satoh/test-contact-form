@@ -11,8 +11,32 @@
 </head>
 
 <body>
-    <a href="">
-        FashionablyLate
-    </a>
+    <header>
+        <h1>FashionablyLate</h1>
+        <nav>
+            @if (isset($page))
+                @switch($page)
+                    @case('register')
+                        <a href="/login">login</a>
+                        @break
+                    @case('login')
+                        <a href="/register">register</a>
+                        @break
+                    @case('admin')
+                        <form action="/logout" method="post" style="display:inline">
+                            @csrf
+                            <button type="submit">logout</button>
+                        </form>
+                        @break
+                    @default
+                @endswitch
+            @endif
+        </nav>
+    </header>
+
+<main>
+    @yield('content')
+</main>
+
 </body>
 </html>
