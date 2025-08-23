@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\AdminController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,6 +26,10 @@ Route::get('/thanks', [ContactController::class, 'thanks']);
 Route::get('/admin', [ContactController::class, 'adminList'])
     ->middleware('auth')
     ->name('admin.index');
+
+Route::get('/admin/export',[AdminController::class, 'export'])
+    ->middleware('auth')
+    ->name('admin.export');
 
 Route::get('/admin/{id}', [ContactController::class, 'show'])
     ->middleware('auth')

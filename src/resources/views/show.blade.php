@@ -5,7 +5,7 @@
 @endphp
 
 @section('css')
-    
+    <link rel="stylesheet" href="{{ asset('css/show.css') }}">
 @endsection
 
 @section('content')
@@ -55,6 +55,15 @@
             {{ $contacts->links() }}
                 </div>
             @endif
+        </div>
+    </form>
+
+    <form action="{{ route('admin.export') }}" method="get">
+        <div class="admin__export">
+            <input type="hidden" name="keyword" value="{{ request('keyword') }}">
+            <input type="hidden" name="gender" value="{{ request('gender') }}">
+            <input type="hidden" name="date" value="{{ request('date') }}">
+            <button type="submit">エクスポート</button>
         </div>
     </form>
 
