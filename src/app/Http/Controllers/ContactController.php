@@ -21,14 +21,14 @@ class ContactController extends Controller
     }
 
     public function confirm(ContactRequest $request) {
-        $nameView = $request->surname . ' ' . $request->name;
+        $nameView = $request->last_name . ' ' . $request->first_name;
         $telView = $request->tel1 . '-' . $request->tel2 . '-' . $request->tel3;
         $telDb = $request->tel1 . $request->tel2 . $request->tel3;
 
         $request->session()->put('contact', [
             'category_id' => $request->category_id,
-            'first_name' => $request->name,
-            'last_name' => $request->surname,
+            'first_name' => $request->first_name,
+            'last_name' => $request->last_name,
             'gender' => $request->gender,
             'email' => $request->email,
             'tel' => $telDb,
@@ -37,7 +37,7 @@ class ContactController extends Controller
             'tel3' => $request->tel3,
             'address' => $request->address,
             'building' => $request->building,
-            'detail' =>$request->content,
+            'detail' =>$request->detail,
         ]);
 
         return view('confirm', [
@@ -48,7 +48,7 @@ class ContactController extends Controller
             'address' => $request->address,
             'building' => $request->building,
             'category' => $this->categories[$request->category_id] ?? '',
-            'content' => $request->content,
+            'content' => $request->detail,
 
         ]);
     }

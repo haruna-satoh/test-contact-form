@@ -22,8 +22,8 @@
                 </div>
                 <div class="form__group--content">
                     <div class="form__input--text name-group">
-                        <input type="text" name="surname" placeholder="例: 山田" value="{{ old('surname', session('contact.last_name')) }}">
-                        <input type="text" name="name" placeholder="例: 太郎" value="{{ old('name', session('contact.first_name')) }}">
+                        <input type="text" name="last_name" placeholder="例: 山田" value="{{ old('last_name', session('contact.last_name')) }}">
+                        <input type="text" name="first_name" placeholder="例: 太郎" value="{{ old('first_name', session('contact.first_name')) }}">
                     </div>
                     <div class="form__error">
                         @error('last_name')
@@ -81,7 +81,13 @@
                         <input type="tel" name="tel3" placeholder="5678" value="{{ old('tel3', session('contact.tel3')) }}">
                     </div>
                     <div class="form__error">
-                        @error('tel')
+                        @error('tel1')
+                            {{ $message }}
+                        @enderror
+                        @error('tel2')
+                            {{ $message }}
+                        @enderror
+                        @error('tel3')
                             {{ $message }}
                         @enderror
                     </div>
@@ -127,11 +133,11 @@
                     <div class="form__input--select">
                         <select name="category_id">
                             <option value="">選択してください</option>
-                            <option value="1" {{ old('select', session('contact.category_id')) == '1' ? 'selected' : '' }}>商品のお届けについて</option>
-                            <option value="2" {{ old('select', session('contact.category_id')) == '2' ? 'selected' : '' }}>商品の交換について</option>
-                            <option value="3" {{ old('select', session('contact.category_id')) == '3' ? 'selected' : '' }}>商品のトラブル</option>
-                            <option value="4" {{ old('select', session('contact.category_id')) == '4' ? 'selected' : '' }}>ショップへのお問い合わせ</option>
-                            <option value="5" {{ old('select', session('contact.category_id')) == '5' ? 'selected' : '' }}>その他</option>
+                            <option value="1" {{ old('category_id', session('contact.category_id')) == '1' ? 'selected' : '' }}>商品のお届けについて</option>
+                            <option value="2" {{ old('category_id', session('contact.category_id')) == '2' ? 'selected' : '' }}>商品の交換について</option>
+                            <option value="3" {{ old('category_id', session('contact.category_id')) == '3' ? 'selected' : '' }}>商品のトラブル</option>
+                            <option value="4" {{ old('category_id', session('contact.category_id')) == '4' ? 'selected' : '' }}>ショップへのお問い合わせ</option>
+                            <option value="5" {{ old('category_id', session('contact.category_id')) == '5' ? 'selected' : '' }}>その他</option>
                         </select>
                     </div>
                     <div class="form__error">
@@ -148,7 +154,7 @@
                 </div>
                 <div class="form__group--content">
                     <div class="form__input--textarea">
-                        <textarea name="content" cols="30" rows="10" placeholder="お問い合わせ内容をご記入ください">{{ old('contact', session('contact.detail')) }}</textarea>
+                        <textarea name="detail" cols="30" rows="10" placeholder="お問い合わせ内容をご記入ください">{{ old('detail', session('contact.detail')) }}</textarea>
                     </div>
                     <div class="form__error">
                         @error('detail')
