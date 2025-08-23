@@ -1,0 +1,112 @@
+.contact__contact {
+    max-width: 1230px;
+    margin: 0 auto;
+    padding: 20px 15px;
+}
+
+.contact__title {
+    display: block;
+    text-align: center;
+    width: 100%;
+    margin-bottom: 40px;
+}
+
+.form {
+    margin: 0 auto;
+    text-align: center;
+    width: 70%;
+}
+
+.form__group {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 20px;
+}
+
+.form__group--title {
+    width: 200px;
+    font-size: 16px;
+    font-weight: bold;
+    margin-right: 20px;
+    align-items: center;
+    justify-content: flex-end;
+    color: #333;
+    display: flex;
+}
+
+.form__group--content {
+    flex: 1;
+    max-width: 600px;
+}
+
+.form__group--required {
+    font-size: 14px;
+    color: red;
+    margin-left: 4px;
+}
+
+.form__input--text input,
+.form__input--select select,
+.form__input--textarea textarea {
+    width: 100%;
+    padding: 10px 12px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    font-size: 14px;
+    box-sizing: border-box;
+    background-color: cornsilk;
+}
+
+.form__input--radio {
+    width: 100%;
+    max-width: 600px;
+    margin-bottom: 10px;
+    text-align: left;
+}
+
+.form__input--radio input[type="radio"] {
+    accent-color: #333;
+    transform: scale(1.2);
+    margin-right: 6px;
+}
+
+.form__input--textarea textarea {
+    min-height: 150px;
+    resize: vertical;
+}
+
+.form__input--text input[type="tel"] {
+    width: 30%;
+    display: inline-block;
+}
+
+.form__input--text.name-group {
+    display: flex;
+    gap: 4%;
+}
+
+.form__input--text.name-group input {
+    flex: 1;
+    width: auto;
+}
+
+.form__error {
+    color: #ff0000;
+    font-size: 13px;
+    margin-top: 5px;
+    text-align: left;
+}
+
+.form__button--submit {
+    display: block;
+    margin: 40px auto 0;
+    width: 200px;
+    padding: 12px;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+}
