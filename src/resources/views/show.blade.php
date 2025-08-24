@@ -52,7 +52,7 @@
             </div>
             @if(isset($contacts) && $contacts)
                 <div class="pagination">
-            {{ $contacts->links() }}
+                {{ $contacts->links() }}
                 </div>
             @endif
         </div>
@@ -98,7 +98,7 @@
         </table>
 
     @elseif(isset($contact_detail))
-        <div class="modal--content">
+        <div class="modal__contact">
             <h3>FashionablyLate</h3>
             <table class="modal__table">
                 <tr>
@@ -143,10 +143,12 @@
             <form action="/admin/{{ $contact_detail->id }}" method="post">
                 @csrf
                 @method('delete')
-                <button type="submit"   class="delete">削除</button>
+                <button type="submit" class="delete">削除</button>
             </form>
 
-            <a href="/admin">一覧に戻る</a>
+            <div class="modal__close">
+                <a href="/admin">✖️</a>
+            </div>
         </div>
     @endif
     </div>
