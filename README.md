@@ -17,7 +17,7 @@
 1. このリポジトリをクローン
 ```bash
 git clone git@github.com:haruna-satoh/test-contact-form.git
-cd contact-form
+cd test-contact-form
 ```
 
 2. Dockerを起動
